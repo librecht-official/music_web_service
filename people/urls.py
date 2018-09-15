@@ -8,7 +8,7 @@ router.register(r'user_profile', views.UserProfileView, base_name='user_profile'
 
 urlpatterns = [
     path(r'', include(router.urls)),
-    path(r'register/', views.CreateUserView.as_view(), name='user'),
-    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path(r'api-token-auth/', obtain_auth_token),
+    path(r'register', views.CreateUserView.as_view(), name='register'),
+    path(r'api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'api-token-auth', obtain_auth_token),
 ]
