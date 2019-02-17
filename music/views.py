@@ -2,24 +2,29 @@ from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Artist, MusicTrack, MusicAlbum
-from .serializers import ArtistSerializer, MusicTrackSerializer, MusicAlbumSerializer
+from . import serializers
 
 
 class ArtistViewSet(viewsets.ModelViewSet):
     queryset = Artist.objects.all()
-    serializer_class = ArtistSerializer
+    serializer_class = serializers.ArtistSerializer
 
 
 class MusicTrackViewSet(viewsets.ModelViewSet):
     queryset = MusicTrack.objects.all()
-    serializer_class = MusicTrackSerializer
+    serializer_class = serializers.MusicTrackSerializer
 
 
 class MusicAlbumViewSet(viewsets.ModelViewSet):
     queryset = MusicAlbum.objects.all()
-    serializer_class = MusicAlbumSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('title', 'artist',)
+
+    def get_serializer_class(self):
+        if self.action == 'create' or self.action == 'update':
+            return serializers.CreateMusicAlbumSerializer
+        return serializers.ReadMusicAlbumSerializer
+
 
 # """
 # View for all albums of artist with given id

@@ -18,8 +18,10 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
+    url(r'^docs/', include_docs_urls(title='Music API')),
     url(r'admin/', admin.site.urls),
     # re_path('api/(?P<version>(v1|v2))/', include('music.urls'))
     path(r'', include('music.urls')),

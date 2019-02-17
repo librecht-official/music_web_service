@@ -11,6 +11,7 @@ class Artist(models.Model):
 
 class MusicTrack(models.Model):
     title = models.CharField(max_length=255, null=False)
+    durationSec = models.IntegerField(null=False)
 
     def __str__(self):
         return '{}'.format(self.title)

@@ -11,10 +11,20 @@ class ArtistSerializer(serializers.ModelSerializer):
 class MusicTrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicTrack
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'durationSec')
 
 
-class MusicAlbumSerializer(serializers.ModelSerializer):
+class ReadMusicAlbumSerializer(serializers.ModelSerializer):
+    tracks = MusicTrackSerializer(many=True)
+    artist = ArtistSerializer()
+    coverImage = serializers.ImageField()
+
+    class Meta:
+        model = MusicAlbum
+        fields = ('id', 'title', 'artist', 'tracks', 'coverImage')
+
+
+class CreateMusicAlbumSerializer(serializers.ModelSerializer):
     # tracks = MusicTrackSerializer(many=True)
     coverImage = serializers.ImageField()
 

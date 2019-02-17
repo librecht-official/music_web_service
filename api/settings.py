@@ -25,7 +25,7 @@ SECRET_KEY = 'b1b+*2w*%l6sxgp414o7kx*pirh^-a3yarjrj$&6%mu39wc)q2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.3']
 
 
 # Application definition
@@ -132,4 +132,7 @@ REST_FRAMEWORK = {
     # When you enable API versioning, the request.version attribute will contain a string
     # that corresponds to the version requested in the incoming client request.
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.UnwrappedLimitOffsetPagination',
+    'PAGE_SIZE': 50,
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S%z',
 }
