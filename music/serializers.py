@@ -9,9 +9,11 @@ class ArtistSerializer(serializers.ModelSerializer):
 
 
 class MusicTrackSerializer(serializers.ModelSerializer):
+    audio = serializers.FileField()
+
     class Meta:
         model = MusicTrack
-        fields = ('id', 'title', 'durationSec')
+        fields = ('id', 'title', 'durationSec', 'albums', 'audio')
 
 
 class ReadMusicAlbumSerializer(serializers.ModelSerializer):

@@ -12,6 +12,7 @@ class Artist(models.Model):
 class MusicTrack(models.Model):
     title = models.CharField(max_length=255, null=False)
     durationSec = models.IntegerField(null=False)
+    audio = models.FileField(upload_to='audio', null=True)
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -21,7 +22,7 @@ class MusicAlbum(models.Model):
     title = models.CharField(max_length=255, null=False)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     description = models.CharField(max_length=255, null=True, blank=True)
-    tracks = models.ManyToManyField(MusicTrack)
+    tracks = models.ManyToManyField(MusicTrack, related_name='albums')
     coverImage = models.ImageField(upload_to='images/music_album_covers', null=True, blank=True)
 
     def __str__(self):
