@@ -28,7 +28,7 @@ class ReadMusicAlbumSerializer(serializers.ModelSerializer):
 
 class CreateMusicAlbumSerializer(serializers.ModelSerializer):
     # tracks = MusicTrackSerializer(many=True)
-    coverImage = serializers.ImageField()
+    coverImage = serializers.ImageField(required=False)
 
     class Meta:
         model = MusicAlbum

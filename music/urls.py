@@ -9,5 +9,6 @@ router.register(r'music_albums', views.MusicAlbumViewSet)
 
 urlpatterns = [
     path(r'', include(router.urls)),
+	 path('explore', views.ExploreView.as_view()),
     # path('artists/<int:id>/music_albums', views.ArtistsAlbumsView.as_view()),
 ]
